@@ -1,4 +1,9 @@
-export function SessionData() {
+import type { Session } from "next-auth";
+
+export function SessionData({
+	session,
+	loading = false,
+}: { session: Session | null; loading?: boolean }) {
 	return (
 		<div className="flex w-full flex-col gap-4">
 			<h2 className="font-bold text-xl">現在のセッションデータ</h2>
@@ -8,7 +13,7 @@ export function SessionData() {
 			<div className="flex flex-col rounded-md bg-neutral-100">
 				<div className="rounded-t-md bg-neutral-200 p-4 font-bold">Session</div>
 				<pre className="whitespace-pre-wrap break-all px-4 py-6">
-					Lorem ipsum dolor sit.
+					{loading ? "loading..." : JSON.stringify(session, null, 2)}
 				</pre>
 			</div>
 		</div>

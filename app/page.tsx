@@ -1,7 +1,9 @@
 import { CustomLink } from "@/components/custom-link";
 import { SessionData } from "@/components/session-data";
+import { auth } from "@/lib/auth";
 
-export default function Home() {
+export default async function Home() {
+	const session = await auth();
 	return (
 		<div className="flex flex-col gap-6">
 			<h1 className="font-bold text-3xl">🚀 NextAuth.js Tutorial</h1>
@@ -15,7 +17,7 @@ export default function Home() {
 				</CustomLink>
 				の例を見て、ページを保護してセッションデータを取得する方法を確認してください。
 			</div>
-			<SessionData />
+			<SessionData session={session} />
 		</div>
 	);
 }

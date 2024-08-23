@@ -1,7 +1,12 @@
+"use client";
+
 import { CustomLink } from "@/components/custom-link";
 import { SessionData } from "@/components/session-data";
+import { useSession } from "next-auth/react";
 
 export function ClientExample() {
+	const { data: session, status } = useSession();
+
 	return (
 		<div className="flex flex-col gap-4">
 			<h1 className="font-bold text-3xl">クライアントサイドレンダリング</h1>
@@ -27,7 +32,7 @@ export function ClientExample() {
 				</CustomLink>
 				コンポーネントが必要です。
 			</p>
-			<SessionData />
+			<SessionData session={session} loading={status === "loading"} />
 		</div>
 	);
 }
